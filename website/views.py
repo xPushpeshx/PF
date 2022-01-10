@@ -15,12 +15,5 @@ def home(request):
         else:
             ex=Contact(name=name,email=email,subject=subject,message=message)
             ex.save()
-            send_mail(
-                name,
-                message,
-                email,
-                ['sagarpushpesh@outlook.com'],
-                fail_silently=False,
-            )
             return render(request,'home.html',{})
     return render(request,'home.html')

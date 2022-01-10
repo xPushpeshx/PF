@@ -117,14 +117,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR]
 
-EMAIL_HOST='smtp.google.com'
-EMAIL_PORT= 587
-EMAIL_HOST_USER="pushpeshpant.coc@gmail.com"
-EMAIL_HOST_PASSWORD="87550@Sagar"
-EMAIL_USE_TLS=True
-EMAIL_USE_SSL=False
-
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
