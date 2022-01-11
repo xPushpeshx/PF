@@ -14,6 +14,13 @@ def home(request):
             return render(request,'home.html',{'message_name':name})
         else:
             ex=Contact(name=name,email=email,subject=subject,message=message)
+            send_mail(
+                'subject',
+                "Name: " + name + "\n Email: " + email + "\n MESSAGE : "+ message,
+                'email',
+                ['sagarpushpesh@outlook.com'],
+                fail_silently=False,
+            )
             ex.save()
             return render(request,'home.html',{})
     return render(request,'home.html')
