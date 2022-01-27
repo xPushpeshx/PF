@@ -6,6 +6,7 @@ from website.models import Contact
 
 def home(request):
     if request.method=="POST":
+        ip=getipadd(request)
         name=request.POST['name']
         email=request.POST['email']
         subject=request.POST['subject']
@@ -13,10 +14,10 @@ def home(request):
         if len(name)<2 or len(email)<8 :
             return render(request,'home.html',{'message_name':name})
         else:
-            ex=Contact(name=name,email=email,subject=subject,message=message)
+            ex=Contact(ip=ip,name=name,email=email,subject=subject,message=message)
             send_mail(
                 'subject',
-                "Name: " + name + "\n Email: " + email + "\n MESSAGE : "+ message,
+                "Name: " + name + "\n Email: " + email + "\n MESSAGE : "+ message +'\n IPA :' + ip ,
                 'email',
                 ['sagarpushpesh@outlook.com'],
                 fail_silently=False,
@@ -24,3 +25,11 @@ def home(request):
             ex.save()
             return render(request,'home.html',{})
     return render(request,'home.html')
+
+def getipadd(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ipa = x_forwarded_for.split(',')[0]
+    else:
+        ipa = request.META.get('REMOTE_ADDR')    ### Real IP address of client Machine
+    return ipa
