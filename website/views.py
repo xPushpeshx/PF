@@ -2,8 +2,6 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.core.mail import send_mail
 from website.models import Contact 
-from django.shortcuts import redirect
-
 
 def home(request):
     if request.method=="POST":
@@ -35,4 +33,4 @@ def getipadd(request):
         ipa = request.META.get('REMOTE_ADDR')    ### Real IP address of client Machine
     return ipa
 def donate(request):
-    return redirect('https://p.paytm.me/xCTH/5b8f2678')
+    return render(request,'donate.html')
