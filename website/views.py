@@ -1,9 +1,11 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.core.mail import send_mail
-from website.models import Contact 
+from website.models import Contact
+import requests
 
 def home(request):
+    dataapi=requests.get("https://animechan.vercel.app/api/random").json()
     if request.method=="POST":
         ip=getipadd(request)
         name=request.POST['name']
@@ -22,8 +24,10 @@ def home(request):
                 fail_silently=False,
             )
             ex.save()
-            return render(request,'home.html',{})
-    return render(request,'home.html')
+            return render(request,'home.html',{"dataapi":dataapi})
+       
+            
+    return render(request,'home.html',{"dataapi":dataapi})
 
 def getipadd(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')

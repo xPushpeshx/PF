@@ -106,7 +106,7 @@
               <h3> About This Website: </h3><br>
               <b>Created using :</b>  HTML , CSS , Bootstrap , Django .<br>
               <b>Features :</b>  Usable Forms , Sends Email to owner whenever a person Contacts him , save data to SQL3 of contact Form ,
-               Responsive Design , Well Formatted , Effective Navigation .
+               Responsive Design , Well Formatted , Effective Navigation , used api to fetch quotes .
             </p>
           </div>
         </div>
@@ -702,9 +702,14 @@
 
       </div>
     </section><!-- End Contact Section -->
-
+    <br>
+    <br>
   </main><!-- End #main -->
-
+  <div class="container section-title">
+    <b>Quote:</b>{{dataapi.quote}}<br>
+    <b>Anime:</b>{{dataapi.anime}}----<b>Character:</b>{{dataapi.character}}
+    <br>
+  </div>
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="container">
